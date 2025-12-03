@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/icon.png" />
+
+  <title>Axis Football League Unblocked Football Game - StaticQuasar931</title>
+  <meta name="description" content="Play Axis Football League unblocked on StaticQuasar931. Classic top down American football game where you run plays, pass, and score touchdowns. School safe and works at school, work, and home." />
+  <meta name="keywords" content="Axis Football League, Axis Football League unblocked, Axis Football League game, Axis Football League g@me, football game unblocked, american football game unblocked, nfl style football game at school, school football game, school football g@me, unblocked sports games, sports game unblocked, StaticQuasar931, staticquasar931, static 931, staticq, staticq931, unblocked games, unblocked g@mes, free school games, free school g@mes" />
+  <link rel="canonical" href="https://sites.google.com/view/staticquasar931/gm3z/axis-football-league" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Axis Football League Unblocked Football Game - StaticQuasar931" />
+  <meta property="og:description" content="Run your own football team in Axis Football League. Call plays, pass, run, and score in this unblocked sports game that works at school and on Chromebooks." />
+  <meta property="og:url" content="https://sites.google.com/view/staticquasar931/gm3z/axis-football-league" />
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/icon.png" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Axis Football League Unblocked Football Game - StaticQuasar931" />
+  <meta name="twitter:description" content="Play Axis Football League unblocked in your browser. Call offensive and defensive plays in this classic American football game." />
+  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/icon.png" />
+
+  <style>
+    :root{
+      --brand:#5ee1ff;
+      --glow:0 0 12px rgba(94,225,255,.65), 0 0 32px rgba(155,255,183,.35);
+      --shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+    html, body{
+      margin:0;
+      height:100%;
+      background:#000;
+      color:#eaf4ff;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      overflow:hidden;
+    }
+    body{
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* Game container fullscreen */
+    main#game-root{
+      flex:1;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+      box-sizing:border-box;
+    }
+    #gameContainer{
+      position:absolute;
+      inset:0;
+      background:#05070b radial-gradient(circle at top, #151b2b 0, #020308 75%);
+      overflow:hidden;
+    }
+    #gameTitleBar{
+      position:absolute;
+      left:0;
+      right:0;
+      top:0;
+      height:30px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 12px;
+      box-sizing:border-box;
+      font-size:12px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:rgba(225,240,255,.9);
+      background:linear-gradient(90deg, rgba(0,0,0,.8), rgba(10,18,30,.95));
+      border-bottom:1px solid rgba(94,225,255,.35);
+      z-index:3;
+    }
+    #gameTitle{
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:70%;
+      text-shadow:0 0 6px rgba(0,0,0,.9);
+    }
+    #gameInfo{
+      font-size:10px;
+      opacity:.8;
+    }
+
+    ruffle-player{
+      width:100%;
+      height:100%;
+      display:block;
+      background:#000;
+    }
+    /* Try to hide any Ruffle toolbar */
+    ruffle-player::part(controls){
+      display:none !important;
+    }
+
+    .game-fallback{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:60px 20px 20px;
+      text-align:center;
+      font-size:14px;
+      color:#d3e4ff;
+      background:radial-gradient(circle at top, #151a28 0, #020308 75%);
+      z-index:2;
+      box-sizing:border-box;
+    }
+    .game-fallback strong{
+      color:#5ee1ff;
+    }
+
+    /* Static Menu (top left) */
+    #staticMenu{
+      position:fixed;
+      left:12px;
+      top:12px;
+      z-index:9999;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      user-select:none;
+      padding:10px 14px;
+      border-radius:12px;
+      background:linear-gradient(135deg, rgba(20,20,28,.9), rgba(20,20,28,.6));
+      border:1px solid rgba(94,225,255,.35);
+      color:#e8f3ff;
+      box-shadow:var(--glow), var(--shadow);
+      font-size:14px;
+      animation:menuEnter .6s ease .15s both;
+    }
+    #staticMenu a{
+      color:#5ee1ff;
+      font-weight:800;
+      text-decoration:none;
+    }
+    #closeStaticMenu{
+      color:#f55;
+      cursor:pointer;
+      padding:2px 6px;
+      border-radius:6px;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(255,255,255,.06);
+    }
+    @keyframes menuEnter{
+      from{opacity:0; transform:translateY(-8px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+    /* Rotating slide in widget bottom right */
+    #staticSlideMenu{
+      position:fixed;
+      bottom:24px;
+      right:24px;
+      z-index:9999;
+      width:100px;
+      height:100px;
+      pointer-events:none;
+      opacity:0;
+      transform:translateX(140px) scale(.96);
+    }
+    #staticSlideMenu a{
+      display:block;
+      width:100%;
+      height:100%;
+    }
+    #staticSlideMenu img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+      transition:opacity .25s ease;
+    }
+    .slide-in{
+      animation:slideIn 2s ease forwards;
+    }
+    .slide-out{
+      animation:slideOut 2s ease forwards;
+    }
+    @keyframes slideIn{
+      from{opacity:0; transform:translateX(140px) scale(.96);}
+      to{opacity:1; transform:translateX(0) scale(1);}
+    }
+    @keyframes slideOut{
+      from{opacity:1; transform:translateX(0) scale(1);}
+      to{opacity:0; transform:translateX(140px) scale(.96);}
+    }
+
+    /* Hidden SEO helper */
+    .seo-hidden{
+      position:absolute;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+      clip:rect(1px,1px,1px,1px);
+      white-space:nowrap;
+    }
+
+    @media (max-width:600px){
+      #staticMenu{
+        font-size:13px;
+        padding:8px 12px;
+      }
+      #staticSlideMenu{
+        width:88px;
+        height:88px;
+      }
+      #gameTitleBar{
+        font-size:11px;
+        padding:0 8px;
+      }
+    }
+  </style>
+
+  <!-- Ruffle config -->
+  <script>
+    window.RufflePlayer = window.RufflePlayer || {};
+    window.RufflePlayer.config = {
+      autoplay: "on",
+      quality: "high",
+      showSwfDownload: false,
+      contextMenu: "off",
+      unmuteOverlay: "hidden"
+    };
+  </script>
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+</head>
+<body>
+
+  <!-- Static Menu (shows on load, hides 3 minutes when closed, then returns) -->
+  <div id="staticMenu" role="region" aria-label="StaticQuasar menu">
+    <a href="https://sites.google.com/view/staticquasar931/gm3z" target="_blank" rel="noopener">More Unblocked Games by Static</a>
+    <span id="closeStaticMenu" title="Hide temporarily">✕</span>
+  </div>
+
+  <!-- Rotating quick link widget bottom right. Order: Google Form -> Discord -> Instagram -->
+  <div id="staticSlideMenu" aria-live="polite">
+    <a id="staticSlideLink" href="https://sites.google.com/view/staticquasar931/google-form" target="_blank" rel="noopener" aria-label="Open Google Form">
+      <img id="staticSlideImg" src="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/GoogleForm.png" alt="StaticQuasar931 Google Form for feedback and requests">
+    </a>
+  </div>
+
+  <!-- Main game area -->
+  <main id="game-root">
+    <div id="gameContainer">
+      <div id="gameTitleBar">
+        <div id="gameTitle">Axis Football League</div>
+        <div id="gameInfo">Unblocked football - StaticQuasar931</div>
+      </div>
+      <div class="game-fallback" id="gameFallback">
+        <div>
+          <strong>Loading Axis Football League...</strong>
+          <br><br>
+          This Axis Football League unblocked page uses Ruffle to emulate Flash. If the game does not start, make sure
+          your network allows the SWF file from GitHub and that scripts are not blocked.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Leave warning
+    window.onbeforeunload = () =>
+      "Are you sure you want to leave? Your Axis Football League progress for this session may be lost.";
+
+    // Static Menu show or hide with 3 minute return
+    (function(){
+      const menu = document.getElementById("staticMenu");
+      const btn  = document.getElementById("closeStaticMenu");
+      const KEY  = "sq931_staticMenu_hidden_until";
+      const show = () => { if (menu) menu.style.display = "flex"; };
+      const hideFor3m = () => {
+        if (!menu) return;
+        menu.style.display = "none";
+        const until = Date.now() + 180000;
+        localStorage.setItem(KEY, String(until));
+        setTimeout(show, 180000);
+      };
+      const until = parseInt(localStorage.getItem(KEY)||"0", 10);
+      if (until && Date.now() < until){
+        if (menu) menu.style.display = "none";
+        setTimeout(show, until - Date.now());
+      } else {
+        show();
+      }
+      if (btn) btn.onclick = hideFor3m;
+    })();
+
+    // Rotator: Google Form -> Discord -> Instagram
+    (function(){
+      const wrap = document.getElementById("staticSlideMenu");
+      const a    = document.getElementById("staticSlideLink");
+      const img  = document.getElementById("staticSlideImg");
+
+      const FORM = {
+        src:  "https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/GoogleForm.png",
+        alt:  "StaticQuasar931 Google Form for feedback and requests",
+        link: "https://sites.google.com/view/staticquasar931/google-form"
+      };
+      const DISCORD = {
+        src:  "https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/Join_Our_DC_StaticQuassar931_lcplrf.png",
+        alt:  "Join the StaticQuasar931 Discord",
+        link: "https://discord.gg/DP2hM7RRhR"
+      };
+      const INSTA = {
+        src:  "https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/Follow-us--IG",
+        alt:  "StaticQuasar931 Instagram",
+        link: "https://www.instagram.com/freeschoolgamepage/"
+      };
+      const ROTATION = [FORM, DISCORD, INSTA];
+
+      ROTATION.forEach(o => { const p = new Image(); p.src = o.src; });
+
+      const T_IN = 2000, T_SHOW = 5000, T_OUT = 2000, T_HIDDEN = 20000;
+      let idx = 0;
+
+      function apply(state){
+        a.href = state.link;
+        img.alt = state.alt;
+        img.style.opacity = "0";
+        setTimeout(() => { img.src = state.src; }, 80);
+        img.onload = () => { img.style.opacity = "1"; };
+      }
+      function delay(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+      (async function cycle(){
+        for(;;){
+          apply(ROTATION[idx]);
+          wrap.style.pointerEvents = "auto";
+          wrap.classList.remove("slide-out");
+          wrap.classList.add("slide-in");
+          await delay(T_IN + T_SHOW);
+          wrap.classList.remove("slide-in");
+          wrap.classList.add("slide-out");
+          await delay(T_OUT);
+          wrap.style.pointerEvents = "none";
+          await delay(T_HIDDEN);
+          idx = (idx + 1) % ROTATION.length;
+        }
+      })();
+    })();
+
+    // Keyboard secret toggle: y + u + i to toggle all Visual SEO
+    (function(){
+      const idsToToggle = ["staticMenu", "staticSlideMenu"];
+      let seq = [];
+      const target = ["y","u","i"];
+      function toggle(){
+        idsToToggle.forEach(id=>{
+          const el = document.getElementById(id);
+          if(!el) return;
+          const isHidden = (el.style.display === "none" || getComputedStyle(el).display === "none");
+          el.style.display = isHidden ? (id === "staticMenu" ? "flex" : "block") : "none";
+        });
+      }
+      window.addEventListener("keydown", (e)=>{
+        seq.push(e.key.toLowerCase());
+        if (seq.length > 3) seq.shift();
+        if (seq.join("") === target.join("")) toggle();
+      });
+    })();
+
+    // Ruffle game boot for Axis Football League
+    (function(){
+      const container = document.getElementById("gameContainer");
+      const fallback  = document.getElementById("gameFallback");
+
+      const SWF_URL = "https://raw.githubusercontent.com/StaticQuasar931/Axis-Football-League/main/AxisFootballLeague.swf";
+
+      function initRuffle(){
+        if (!container || !window.RufflePlayer) return;
+
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        player.style.width = "100%";
+        player.style.height = "100%";
+        player.style.position = "absolute";
+        player.style.inset = "0";
+        player.style.zIndex = "1";
+
+        container.appendChild(player);
+
+        if (fallback) fallback.style.display = "flex";
+
+        player.load(SWF_URL).then(() => {
+          if (fallback) fallback.style.display = "none";
+        }).catch(() => {
+          if (fallback){
+            fallback.style.display = "flex";
+            fallback.innerHTML =
+              "<div><strong>Could not load Axis Football League.</strong><br><br>" +
+              "Check that the SWF file is reachable from GitHub and that your network or browser is not blocking it.</div>";
+          }
+        });
+      }
+
+      if (document.readyState === "complete" || document.readyState === "interactive"){
+        initRuffle();
+      } else {
+        window.addEventListener("DOMContentLoaded", initRuffle);
+      }
+    })();
+  </script>
+
+  <!-- Hidden SEO block for Axis Football League -->
+  <div class="seo-hidden" aria-hidden="true">
+    <h1>Axis Football League unblocked football game by StaticQuasar931</h1>
+    <p>
+      Play Axis Football League unblocked on StaticQuasar931. This classic American football game lets you control a full team,
+      call offensive and defensive plays, pass the ball, run the ball, and try to win the league. It is a top down style
+      football game where you pick plays from a playbook then execute them in real time.
+    </p>
+    <p>
+      Axis Football League unblocked is school safe and built to work at school, work, and home on Chromebook, Windows, and Mac.
+      The game runs in browser using Ruffle as a Flash emulator and does not need extra downloads for normal use.
+    </p>
+    <p>
+      Keywords: Axis Football League, Axis Football League unblocked, Axis Football League game, Axis Football League g@me,
+      football game unblocked, american football game unblocked, nfl style football game, unblocked sports games,
+      sports unblocked g@mes for school, school football game, school football g@me, StaticQuasar931, staticquasar931,
+      static 931, staticq, staticq931, unblocked games, unblocked g@mes, free school games, free school g@mes.
+    </p>
+    <p>
+      More unblocked games, sports games, and football g@mes by Static:
+      <a href="https://sites.google.com/view/staticquasar931" target="_blank" rel="noopener">StaticQuasar931 home</a>,
+      <a href="https://sites.google.com/view/staticquasar931/gm3z" target="_blank" rel="noopener">StaticQuasar931 games list</a>.
+    </p>
+  </div>
+</body>
+</html>
